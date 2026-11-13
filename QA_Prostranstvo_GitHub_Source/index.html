@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f5f0">
+<meta name="description" content="QA Пространство — самостоятельное обучение тестированию: Junior, Middle и Senior. Уроки, практика, проверка знаний и личный прогресс.">
+<title>QA Пространство — учись в своём ритме</title>
+<link rel="stylesheet" href="css/styles.css">
+
+<link rel="stylesheet" href="css/cloud.css">
+</head>
+<body>
+<noscript><p style="padding:30px">Для уроков, практики и сохранения прогресса включи JavaScript в браузере.</p></noscript>
+<a href="#main" class="skip-link">Перейти к содержимому</a>
+<div class="sidebar-shade" id="sidebar-shade"></div>
+<aside class="sidebar" id="sidebar" aria-label="Основная навигация">
+  <button class="icon-button mobile-sidebar-close" data-action="close-menu" aria-label="Закрыть меню">×</button>
+  <a class="brand" href="#home" aria-label="QA Пространство — главная"><span class="brand-mark">q<span>a</span><i></i></span><span class="brand-text">QA<span>пространство</span></span></a>
+  <div class="nav-label">ТВОЁ ОБУЧЕНИЕ</div>
+  <nav id="nav"></nav>
+  <div class="sidebar-bottom">
+    <div class="slow-card"><span class="slow-sprout" id="slow-sprout"></span><strong>В своём ритме</strong><p>Даже один урок —<br>это шаг вперёд.</p><button class="text-btn" data-action="open-info">Как здесь учиться <svg class="icon" style="width:13px;height:13px" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></button></div>
+    <button class="theme-button" id="theme-button" data-action="theme"></button>
+    <div class="offline-label"><span></span>Можно учиться офлайн</div>
+  </div>
+</aside>
+<div class="app-shell">
+  <header class="topbar">
+    <button class="icon-button mobile-menu" id="menu-button" data-action="menu" aria-label="Открыть меню" aria-controls="sidebar" aria-expanded="false"></button>
+    <div class="breadcrumb"><span>Моё пространство</span><i>/</i><strong id="breadcrumb">Мой путь</strong></div>
+    <div class="topbar-actions"><button class="search-trigger" data-action="search" aria-label="Поиск по всем урокам"><span id="search-icon"></span><span>Найти урок</span><kbd>Ctrl K</kbd></button><div class="profile" aria-label="Ваше личное пространство">Я</div></div>
+  </header>
+  <div id="storage-warning" class="storage-warning" hidden>Браузер не разрешает постоянное сохранение. Перед закрытием скачай копию прогресса в разделе «Мой прогресс».</div>
+  <main id="main" tabindex="-1"></main>
+  <footer class="footer"><span>QA Пространство</span><span>Небольшие шаги. Осмысленная практика.</span><button data-action="open-info">О курсе</button></footer>
+</div>
+<dialog id="search-dialog" class="search-dialog" aria-labelledby="search-title"><div class="dialog-top"><h2 id="search-title">Что хочешь изучить?</h2><button class="icon-button" data-action="close-dialog" aria-label="Закрыть поиск">×</button></div><div class="search-input-wrap"><input id="search-input" type="search" autocomplete="off" placeholder="Например, API, SQL или баг-репорт" aria-label="Поиск уроков"></div><div id="search-results" class="search-results"></div><div class="dialog-foot">Поиск по всем трём уровням <kbd>Esc — закрыть</kbd></div></dialog>
+<dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"><div class="dialog-top"><h2 id="info-title">Устроено просто</h2><button class="icon-button" data-action="close-dialog" aria-label="Закрыть окно">×</button></div><div id="info-content"></div></dialog>
+<dialog id="diagnostic-dialog" class="info-dialog" aria-labelledby="diagnostic-title"><div class="dialog-top"><h2 id="diagnostic-title">С какого уровня начать?</h2><button class="icon-button" data-action="close-dialog" aria-label="Закрыть подбор маршрута">×</button></div><div id="diagnostic-content"></div></dialog>
+<input type="file" accept=".json,application/json" id="import-file" hidden>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="data/curriculum.js"></script>
+<script defer src="js/app.js"></script>
+
+<dialog id="qa-cloud-dialog" class="qa-cloud-dialog" aria-labelledby="qa-cloud-title">
+ <div class="qa-cloud-head"><h2 id="qa-cloud-title">Твой профиль QA</h2><button id="qa-cloud-close" aria-label="Закрыть">×</button></div>
+ <p id="qa-cloud-status">Прогресс сохраняется в облаке после входа по email. Твои личные заметки остаются на этом устройстве.</p>
+ <form id="qa-cloud-form">
+ <label for="qa-cloud-name">Как тебя зовут?</label><input id="qa-cloud-name" maxlength="80" autocomplete="name" placeholder="Например, Мадина" required>
+ <label for="qa-cloud-email">Email для входа</label><input id="qa-cloud-email" type="email" autocomplete="email" placeholder="name@example.com" required>
+ <button id="qa-cloud-submit" type="submit">Получить ссылку для входа</button>
+ </form>
+ <section id="qa-cloud-member" hidden><p id="qa-cloud-member-label"></p><label for="qa-cloud-edit-name">Имя ученика</label><input id="qa-cloud-edit-name" maxlength="80" placeholder="Имя ученика"><button id="qa-cloud-save-name" class="secondary">Изменить имя</button><button id="qa-cloud-sync" class="secondary">Обновить данные</button> <button id="qa-cloud-signout" class="secondary">Выйти</button><div id="qa-admin-actions" hidden><button id="qa-cloud-students" type="button">Результаты учеников</button></div></section>
+ <div id="qa-cloud-msg" role="status" aria-live="polite"></div>
+ <div class="qa-admin-wrap" id="qa-cloud-admin-results"></div>
+ <div class="qa-cloud-small">Вход нужен, чтобы сохранять результаты на разных устройствах. Используем email только для входа. Преподаватель видит имя и результаты тестирования. Не вводи здесь банковские или другие конфиденциальные данные.</div>
+</dialog>
+
+<script defer src="js/config.js"></script>
+<script defer src="js/cloud.js"></script>
+</body>
+</html>
